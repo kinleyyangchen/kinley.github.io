@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Portrait</title>
+    <!-- Use Tailwind CSS for a modern, responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            color: #2c3e50; /* Dark navy for text */
+            background-color: #f7f1e3; /* Soft, warm beige background */
+        }
+        .container {
+            max-width: 1024px;
+        }
+        .section-card {
+            background-color: #ffffff; /* White card background */
+            /* Note: The hover effect is defined here to ensure the whole card lifts */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .section-card:hover {
+            transform: translateY(-5px) rotate(-1deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Roboto Slab', serif;
+        }
+        .accent-text {
+            color: #e67e22; /* Vibrant orange accent */
+        }
+        
+        /* Apply parallax effect to the main hero section */
+        .hero-parallax {
+            background-image: url('../kinley/Photos/k.jpeg');/* <-- Semicolon added here */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        /* About Me Section is now a standard card */
+        .about-section-card {
+             background-color: #ffffff;
+             color: #2c3e50;
+        }
+
+        /* Custom style for the fancy text shadow */
+        .text-shadow-lg {
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Gallery Slider Styles */
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        /* Ensure each slide is the positioning context for the overlay */
+        .slide {
+            flex: 0 0 100%;
+        }
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 1rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .nav-button:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .prev-button {
+            left: 1rem;
+        }
+        .next-button {
+            right: 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md py-4 px-8 fixed top-0 w-full z-50">
+        <div class="container mx-auto flex justify-center space-x-8">
+            <a href="#about" class="text-gray-600 hover:text-gray-900 font-semibold transition duration-300">About Me</a>
+            <a href="#activities" class="text-gray-600 hover:text-gray-900 font-semibold transition duration-300">School Activities</a>
+            <a href="#extracurriculars" class="text-gray-600 hover:text-gray-900 font-semibold transition duration-300">Extracurriculars</a>
+            <a href="#gallery" class="text-gray-600 hover:text-gray-900 font-semibold transition duration-300">Photo Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Self Portrait) -->
+    <header class="hero-parallax py-24 px-4 md:px-8 text-center text-white relative flex items-center justify-center h-screen">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="container mx-auto z-10">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-tight">Self Portrait</h1>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+                Exploring the moments and accomplishments that shaped me.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container mx-auto p-4 md:p-8 relative -top-20 z-20">
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section-card rounded-2xl p-6 md:p-10 mb-12 shadow-md">
+            <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8 mt-6">
+                <div class="md:w-1/2">
+                    <img src="../kinley/Photos/IMG_2009.JPG" alt="Your New Image" class="rounded-lg shadow-md w-full h-auto">
+                </div>
+                <div class="md:w-1/2 leading-relaxed text-center md:text-left">
+                    <p class="mb-4">
+                        I am Kinley Yangchen, and I am from Trashigang. I like many things, like reading books, watching movies, and playing football and basketball. I also like listening to music and talking to people.
+                    </p>
+                    <p>
+                        My time at The Royal Academy was a journey of slow and good growth. At first, I was not sure what to do in the future. But I always liked biology, so now I want to study MBBS after grade 12. I think this job will help me and other people. My growth is because of people who helped me and because I worked hard when things were difficult.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- School Activities Section -->
+        <section id="activities" class="p-6 md:p-10 mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-center">School Activities</h2>
+            <!-- Added wrapper to control size and center the slider -->
+            <div class="max-w-2xl mx-auto">
+                <div class="slider-container">
+                    <div class="slides" id="gallery-slides">
+                        
+                        <!-- SLIDE 1: Midterm Report -->
+                        <div class="slide relative">
+                            <a href="https://drive.google.com/drive/folders/1y-AlLCH8EbWSOeaSwiozIOLIBO3WE3G3" target="_blank">
+                                <img src="../kinley/Photos/48,359 Checklist Stock Photos, High-Res Pictures, and Images - Getty Images.jpeg" alt="Reports" class="w-full rounded-2xl object-cover aspect-[4/3]">
+                                <div class="absolute inset-0 bg-black/40 rounded-2xl flex items-end p-6 md:p-8">
+                                    <h3 class="text-white text-4xl md:text-5xl font-extrabold tracking-wider text-shadow-lg font-['Roboto_Slab']">
+                                        Reports
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- SLIDE 2: Morning Physical -->
+                        <div class="slide relative">
+                            <a href="https://docs.google.com/document/d/1PRhNpBoMGR-7GF5qMeA3PcbtLt_AoTyLID5JJ9mox-Q/edit?tab=t.0" target="_blank">
+                                <img src="../kinley/Photos/_.jpeg" alt="Morning Physical" class="w-full rounded-2xl object-cover aspect-[4/3]">
+                                <div class="absolute inset-0 bg-black/40 rounded-2xl flex items-end p-6 md:p-8">
+                                    <h3 class="text-white text-4xl md:text-5xl font-extrabold tracking-wider text-shadow-lg font-['Roboto_Slab']">
+                                        Sports
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- SLIDE 3: Nature Retreat -->
+                        <div class="slide relative">
+                            <a href="https://drive.google.com/drive/folders/1rLgMQl9ZY7KYMoCAEeH0pg5pqIb1MHgA" target="_blank">
+                                <img src="../kinley/Photos/a4587a73-d36f-459c-a902-e44411228ec7.jpeg" alt="Nature Retreat" class="w-full rounded-2xl object-cover aspect-[4/3]">
+                                <div class="absolute inset-0 bg-black/40 rounded-2xl flex items-end p-6 md:p-8">
+                                    <h3 class="text-white text-4xl md:text-5xl font-extrabold tracking-wider text-shadow-lg font-['Roboto_Slab']">
+                                        Nature Retreat
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <!-- SLIDE 4: Vlog Creation -->
+                        <div class="slide relative">
+                            <a href="https://drive.google.com/drive/folders/1kmSIXn299uIfrHNzMv5VQ1synKWkIAw2" target="_blank">
+                                <img src="../kinley/Photos/_ (2).jpeg" alt="Vlog" class="w-full rounded-2xl object-cover aspect-[4/3]">
+                                <div class="absolute inset-0 bg-black/40 rounded-2xl flex items-end p-6 md:p-8">
+                                    <h3 class="text-white text-4xl md:text-5xl font-extrabold tracking-wider text-shadow-lg font-['Roboto_Slab']">
+                                        Vlog Creation
+                                    </h3>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                    <button class="nav-button prev-button" onclick="changeSlide(-1)">&#10094;</button>
+                    <button class="nav-button next-button" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Extracurriculars Section -->
+        <section id="extracurriculars" class="py-6 px-4 md:px-8 mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-center">Extracurriculars</h2>
+            
+            <!-- Earth Prize Challenge Card (Now Clickable and smaller padding) -->
+            <a href="https://drive.google.com/drive/folders/1v4OwU6Yx9qfPtH1lJ5dGqvAGHxibjRP7" target="_blank" class="block">
+                <div class="flex flex-col md:flex-row items-center gap-8 section-card p-4 rounded-2xl shadow-lg mb-8">
+                    <div class="md:w-1/2">
+                        <img src="../kinley/Photos/Download premium png of Png continents of planet earth sticker by Noon about globe png, earth, global, earth planet, and africa 2456456.jpeg" alt="Earth Prize Activity" class="rounded-lg shadow-md w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold accent-text mb-2">Earth Prize Challenge</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            I participated in the challenge with an innovative idea with my peers to help make the environment a better place to live. 
+                        </p>
+                    </div>
+                </div>
+            </a>
+            
+            <!-- Technology Card (Now Clickable and smaller padding) -->
+            <a href="https://drive.google.com/drive/folders/1v4OwU6Yx9qfPtH1lJ5dGqvAGHxibjRP7" target="_blank" class="block">
+                <div class="flex flex-col md:flex-row-reverse items-center gap-8 section-card p-4 rounded-2xl shadow-lg">
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x400/c8d6e5/2f3640?text=PCB+Internship" alt="Technology Internship" class="rounded-lg shadow-md w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold accent-text mb-2">Technology</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                           I went through a 1-week internship in the DGI Aesthetic Center. The internship was on making PCB. 
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="p-6 md:p-10 mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-center">Photo Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="../Images/image_6209779.jpg" alt="Photo of friends" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        Techonology project.
+                    </p>
+                </div>
+                <!-- Gallery Item 2 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="../Images/IMG_20240513_154814.jpg" alt="Photo of a school event" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        Nature retreat. 
+                    </p>
+                </div>
+                <!-- Gallery Item 3 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="../Images/P1160253.JPG" alt="Photo of a classroom" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                         2022, National Day. 
+                    </p>
+                </div>
+                <!-- Gallery Item 4 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x300/f5f5f5/555555?text=Graduation" alt="Photo of graduation day" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        A memory from my graduation day with my classmates.
+                    </p>
+                </div>
+                <!-- Gallery Item 5 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x300/f5f5f5/555555?text=Sports" alt="Photo of a sports game" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        Playing football with my teammates after school.
+                    </p>
+                </div>
+                <!-- Gallery Item 6 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x300/f5f5f5/555555?text=Award" alt="Photo of an award ceremony" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        Receiving an award for my academic performance.
+                    </p>
+                </div>
+                <!-- Gallery Item 7 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x300/f5f5f5/555555?text=Concert" alt="Photo of a school concert" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        Enjoying a lively school concert with my friends.
+                    </p>
+                </div>
+                <!-- Gallery Item 8 -->
+                <div class="flex flex-col items-center text-center">
+                    <img src="https://placehold.co/400x300/f5f5f5/555555?text=Trip" alt="Photo from a school trip" class="rounded-lg section-card w-full aspect-square object-cover">
+                    <p class="mt-2 text-sm text-gray-600">
+                        A photo from a memorable school trip to a nearby village.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 px-4 md:px-8 text-center">
+        <p>&copy; 2024 Kinley Yangchen. All Rights Reserved.</p>
+    </footer>
+
+<script>
+    // Gallery Slider Functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlides(n) {
+        if (n >= slides.length) {
+            slideIndex = 0;
+        }
+        if (n < 0) {
+            slideIndex = slides.length - 1;
+        }
+        const slider = document.getElementById('gallery-slides');
+        slider.style.transform = `translateX(${-slideIndex * 100}%)`;
+    }
+
+    function changeSlide(n) {
+        showSlides(slideIndex += n);
+    }
+</script>
+</body>
+</html>
